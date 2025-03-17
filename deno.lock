@@ -1,0 +1,32 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@types/node@*": "22.12.0",
+    "npm:ollama@~0.5.14": "0.5.14"
+  },
+  "npm": {
+    "@types/node@22.12.0": {
+      "integrity": "sha512-Fll2FZ1riMjNmlmJOdAyY5pUbkftXslB5DgEzlIuNaiWhXd00FhWxVC/r4yV/4wBb9JfImTu+jiSvXTkJ7F/gA==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "ollama@0.5.14": {
+      "integrity": "sha512-pvOuEYa2WkkAumxzJP0RdEYHkbZ64AYyyUszXVX7ruLvk5L+EiO2G71da2GqEQ4IAk4j6eLoUbGk5arzFT1wJA==",
+      "dependencies": [
+        "whatwg-fetch"
+      ]
+    },
+    "undici-types@6.20.0": {
+      "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="
+    },
+    "whatwg-fetch@3.6.20": {
+      "integrity": "sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:ollama@~0.5.14"
+    ]
+  }
+}
