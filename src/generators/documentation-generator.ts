@@ -36,7 +36,7 @@ export class DocumentationGenerator {
 
       for await (const part of response) {
         if (verbose) {
-          Deno.stdout.write(new TextEncoder().encode(part.message.content));
+          await Deno.stdout.write(new TextEncoder().encode(part.message.content));
         }
         fullResponse += part.message.content;
       }
