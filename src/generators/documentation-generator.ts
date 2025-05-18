@@ -10,14 +10,14 @@ export class DocumentationGenerator {
     const prompt = PROMPT_TEMPLATE
       .replace("{method}", spec.method)
       .replace("{path}", spec.path)
-      .replace("{description}", spec.description || "No description provided")
+      .replace("{description}", spec.description ?? "No description provided")
       .replace(
         "{requestBody}",
-        JSON.stringify(spec.requestBody, null, 2) || "None",
+        JSON.stringify(spec.requestBody, null, 2) ?? "None",
       )
       .replace(
         "{responseBody}",
-        JSON.stringify(spec.responseBody, null, 2) || "None",
+        JSON.stringify(spec.responseBody, null, 2) ?? "None",
       );
 
     if (verbose) {
@@ -36,7 +36,9 @@ export class DocumentationGenerator {
 
       for await (const part of response) {
         if (verbose) {
-          await Deno.stdout.write(new TextEncoder().encode(part.message.content));
+          await Deno.stdout.write(
+            new TextEncoder().encode(part.message.content),
+          );
         }
         fullResponse += part.message.content;
       }
