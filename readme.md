@@ -1,3 +1,3 @@
 # ApiGen
 
-Automatic documentation generator for REST API inputs and outputs using LLM technology.
+Automatikus dokumentációgenerátor REST API bemenetekhez és kimenetekhez LLM technológia segítségével.
