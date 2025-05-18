@@ -1,11 +1,10 @@
 import ollama, { Message } from "ollama";
 import { ApiSpec } from "../types/api-spec.ts";
+import { GlobalConfig } from "../config/global-config.ts";
 
-export class DocumentationGenerator {
+export class EndpointDocumentationGenerator {
   public async generate(
     spec: ApiSpec,
-    model: string,
-    verbose: boolean,
   ): Promise<string> {
     const prompt = PROMPT_TEMPLATE
       .replace("{method}", spec.method)
@@ -20,14 +19,14 @@ export class DocumentationGenerator {
         JSON.stringify(spec.responseBody, null, 2) ?? "None",
       );
 
-    if (verbose) {
+    if (GlobalConfig.getInstance().verbose) {
       console.log("Sending prompt to LLM:", prompt);
     }
 
     try {
       let fullResponse = "";
       const response = await ollama.chat({
-        model,
+        model: GlobalConfig.getInstance().modelName,
         messages: [{ role: "user", content: prompt }] as [Message],
         stream: true,
       });
@@ -35,7 +34,7 @@ export class DocumentationGenerator {
       console.log(`Generating docs for ${spec.method} ${spec.path}...`);
 
       for await (const part of response) {
-        if (verbose) {
+        if (GlobalConfig.getInstance().verbose) {
           await Deno.stdout.write(
             new TextEncoder().encode(part.message.content),
           );
@@ -78,4 +77,7 @@ Format your response as markdown with the following sections:
 6. Usage Examples (curl and JavaScript fetch)
 
 It is very important that you don not leave out any sections and to format your response as markdown.
+
+Only output the documentation in the format specified above. Do not include any other text. Do not be chatty.
+Do not put your answer inside \`\`\`markdown ... \`\`\` blocks.
 `;

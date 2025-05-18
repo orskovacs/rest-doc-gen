@@ -1,0 +1,30 @@
+- method: GET
+  path: /api/users
+  description: Retrieve a list of users
+  requestBody: null
+  responseBody:
+    users:
+      - id: 1
+        name: John Doe
+        email: john@example.com
+        role: admin
+        created_at: '2023-01-01T00:00:00Z'
+    pagination:
+      total: 100
+      page: 1
+      limit: 10
+
+- method: POST
+  path: /api/users
+  description: Create a new user
+  requestBody:
+    name: Jane Doe
+    email: jane@example.com
+    password: securePassword123
+    role: user
+  responseBody:
+    id: 2
+    name: Jane Doe
+    email: jane@example.com
+    role: user
+    created_at: '2023-01-02T00:00:00Z'
